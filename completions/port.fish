@@ -1,1 +1,1 @@
-../3rdparty/port_fish_completion/port.fish
+../3rdparty/macport_completions/port.fish

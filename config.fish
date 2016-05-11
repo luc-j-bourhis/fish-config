@@ -14,6 +14,8 @@ end
 if test -d ~/.pyenv
     set -x PATH ~/.pyenv/bin $PATH
     pyenv init - fish | source
+    # if the virtualenv plugin for pyenv is not installed,
+    # the following will silently fail
     pyenv virtualenv-init - fish | source
 end
 

@@ -14,7 +14,7 @@ function fish_right_prompt
     end
 
     # Do we have a Python virtual environment?
-    if test -n $PYENV_VIRTUALENV_INIT
+    if test -n "$PYENV_VIRTUALENV_INIT"
         set py_venv (pyenv virtualenvs | \
                      perl -ne 'm{^\*\s*(\S+)} and print $1 or print ""')
         if test -n "$py_venv"

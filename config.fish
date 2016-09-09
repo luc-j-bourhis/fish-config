@@ -19,6 +19,11 @@ if test -d ~/.pyenv
     pyenv virtualenv-init - fish | source
 end
 
+# ~/bin
+if test -d ~/bin
+    set -x PATH $PATH ~/bin
+end
+
 # git prompt
 set __fish_git_prompt_showstashstate     1
 set __fish_git_prompt_showupstream       1

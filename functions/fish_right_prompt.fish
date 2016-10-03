@@ -1,14 +1,27 @@
+function rbvers
+    echo (ruby -e 'puts RUBY_VERSION')
+end
+
+function pyvers
+    echo (python -c 'import platform; print platform.python_version()')
+end
+
+function plvers
+    perl -e 'print $^V'
+end
+
 function fish_right_prompt
     # git
     __fish_git_prompt
 
     # versions of Python, Ruby and Perl
     set -l vers
-    for cmd in pyenv rbenv plenv
+    for lang in py rb pl
+        set -l cmd {$lang}env
         if type -q $cmd
             set ver (eval $cmd version-name)
         else
-            set ver sys
+            set ver (eval {$lang}vers)
         end
         set vers $vers $ver
     end

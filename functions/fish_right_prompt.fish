@@ -22,11 +22,11 @@ function fish_right_prompt
         end
     end
 
-    set fvers (echo $vers|perl -pe 's{\.\d+(?=\s)}{}g; s{\s+}{\n}g')
-
-    printf "%s[%s]%s[%s]%s[%s]%s"   \
-        (set_color yellow) $fvers[1] \
-        (set_color red)    $fvers[2] \
-        (set_color blue)   $fvers[3] \
-        (set_color normal)
+    set_color yellow
+    printf "[%s]" $vers[1]
+    set_color red
+    printf "[%s]" $vers[2]
+    set_color blue
+    printf "[%s]" $vers[3]
+    set_color normal
 end

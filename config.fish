@@ -34,3 +34,8 @@ set __fish_git_prompt_showupstream       1
 set __fish_git_prompt_char_stashstate '◊'
 set __fish_git_prompt_char_untrackedfiles '~'
 
+# OPAM configuration
+if type -q opam
+    eval (opam config env)
+end
+

@@ -7,7 +7,7 @@ function pyvers
 end
 
 function plvers
-    perl -e 'print $^V'
+    perl -e '$_=$^V; s/^v//; print'
 end
 
 function fish_right_prompt

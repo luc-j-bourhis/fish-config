@@ -3,7 +3,7 @@ function rbvers
 end
 
 function pyvers
-    echo (python -c 'import platform; print platform.python_version()')
+    echo (python -c 'import platform; print(platform.python_version())')
 end
 
 function plvers

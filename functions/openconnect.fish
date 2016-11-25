@@ -18,7 +18,7 @@ function openconnect -a subcommand
         case stop
             if test -f $pidfile
                 cat $pidfile | read -l pid
-                sudo kill $pid
+                sudo kill -s SIGINT $pid
                 or echo "Failed to stop openconnect process $pid"
                 and rm -f $pidfile
             end

@@ -12,7 +12,7 @@ function openconnect -a subcommand
             if test $running = no
                 sudo /usr/sbin/openconnect -q --no-cert-check \
                                            -b --pid-file $pidfile \
-                                           -u luc.bourhis $OPENCONNECT_URL 
+                                           -u luc.bourhis $OPENCONNECT_URL
                 or echo "openconnect failed to connect to $OPENCONNECT_URL"
             end
         case stop
@@ -23,6 +23,6 @@ function openconnect -a subcommand
                 and rm -f $pidfile
             end
         case '*'
-            echo "$subcommand is not a subcommand of brukervpn"
+            echo "$subcommand is not a subcommand of openconnect"
     end
 end

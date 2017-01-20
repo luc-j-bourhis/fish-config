@@ -24,6 +24,14 @@ if test -d ~/bin
     set -x PATH $PATH ~/bin
 end
 
+# Ruby gems installed with --user-install
+# We do not try to automatically manage Ruby versions:
+# Make sure '*' expands to one and only one version to avoid problems.
+# For managing multiple versions, use bundler per project.
+if test -d ~/.gem
+    set -x PATH ~/.gem/ruby/*/bin $PATH
+end
+
 # git prompt
 set __fish_git_prompt_showstashstate     1
 set __fish_git_prompt_showupstream       1

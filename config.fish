@@ -41,7 +41,10 @@ end
 if test -d ~/miniconda3
     prepend_to_fish_user_paths ~/miniconda3/bin
     source ~/miniconda3/etc/fish/conf.d/conda.fish
-    complete -c conda -e
+    # Remove "official" conda completions if requested
+    if set -q my_fish_disable_official_conda_completions
+        complete -c conda -e
+    end
 end
 
 # git prompt

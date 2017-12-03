@@ -1,18 +1,18 @@
 # rbenv
 if test -d ~/.rbenv
-    set -x PATH ~/.rbenv/bin $PATH
+    prepend_to_fish_user_paths ~/.rbenv/bin
     rbenv init - fish | source
 end
 
 # plenv
 if test -d ~/.plenv
-    set -x PATH ~/.plenv/bin $PATH
+    prepend_to_fish_user_paths ~/.plenv/bin
     plenv init - fish | source
 end
 
 # pyenv
 if test -d ~/.pyenv
-    set -x PATH ~/.pyenv/bin $PATH
+    prepend_to_fish_user_paths ~/.pyenv/bin $PATH
     pyenv init - fish | source
     # if the virtualenv plugin for pyenv is not installed,
     # the following will silently fail
@@ -21,7 +21,7 @@ end
 
 # ~/bin
 if test -d ~/bin
-    set -x PATH $PATH ~/bin
+    append_to_fish_user_paths ~/bin
 end
 
 # Ruby gems installed with --user-install
@@ -29,7 +29,7 @@ end
 # Make sure '*' expands to one and only one version to avoid problems.
 # For managing multiple versions, use bundler per project.
 if test -d ~/.gem
-    set -x PATH ~/.gem/ruby/*/bin $PATH
+    prepend_to_fish_user_paths ~/.gem/ruby/*/bin
 end
 
 # git prompt

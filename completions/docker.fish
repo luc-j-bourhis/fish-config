@@ -1,1 +1,0 @@
-../3rdparty/docker_completions/docker.fish

@@ -1,1 +1,0 @@
-../3rdparty/macport_completions/port.fish

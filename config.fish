@@ -10,6 +10,11 @@ if test -d ~/.plenv
     plenv init - fish | source
 end
 
+# local::lib
+if test -d ~/.perl5
+    eval (perl -I$HOME/.perl5/lib/perl5 -Mlocal::lib=$HOME/.perl5)
+end
+
 # pyenv
 if test -d ~/.pyenv
     prepend_to_fish_user_paths ~/.pyenv/bin $PATH

@@ -37,6 +37,13 @@ if test -d ~/.gem
     prepend_to_fish_user_paths ~/.gem/ruby/*/bin
 end
 
+# Miniconda
+if test -d ~/miniconda3
+    prepend_to_fish_user_paths ~/miniconda3/bin
+    source ~/miniconda3/etc/fish/conf.d/conda.fish
+    complete -c conda -e
+end
+
 # git prompt
 set __fish_git_prompt_showstashstate     1
 set __fish_git_prompt_showupstream       1

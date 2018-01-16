@@ -59,6 +59,5 @@ set __fish_git_prompt_char_untrackedfiles '~'
 
 # OPAM configuration
 if type -q opam
-    eval (opam config env)
+    prepend_new_on_PATH_to_fish_user_paths (opam config env)
 end
-

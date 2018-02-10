@@ -28,14 +28,6 @@ if test -d ~/bin
     append_to_fish_user_paths ~/bin
 end
 
-# Ruby gems installed with --user-install
-# We do not try to automatically manage Ruby versions:
-# Make sure '*' expands to one and only one version to avoid problems.
-# For managing multiple versions, use bundler per project.
-if test -d ~/.gem
-    prepend_to_fish_user_paths ~/.gem/ruby/*/bin
-end
-
 # Miniconda
 if test -d ~/miniconda3
     prepend_to_fish_user_paths ~/miniconda3/bin

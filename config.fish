@@ -1,7 +1,6 @@
 # rbenv
 if test -d ~/.rbenv
-    prepend_to_fish_user_paths ~/.rbenv/bin
-    rbenv init - fish | source
+    status --is-interactive; and source (rbenv init -|psub)
 end
 
 # plenv

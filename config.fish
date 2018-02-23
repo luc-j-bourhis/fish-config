@@ -28,6 +28,9 @@ if test -d ~/bin
     append_to_fish_user_paths ~/bin
 end
 
+# Settings for interactive sessions only
+status --is-interactive; and test -f ~/.config-interactive.fish; and source ~/.config-interactive.fish
+
 # Miniconda
 if test -d ~/miniconda3
     prepend_to_fish_user_paths ~/miniconda3/bin

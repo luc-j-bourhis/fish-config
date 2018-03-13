@@ -6,5 +6,5 @@ function prepend_new_on_PATH_to_fish_user_paths \
         contains $p $OLD_PATH
         or prepend_to_fish_user_paths $p
     end
-    set -g PATH $OLD_PATH
+    set -gx PATH $OLD_PATH
 end

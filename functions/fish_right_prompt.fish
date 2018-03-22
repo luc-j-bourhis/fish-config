@@ -11,8 +11,8 @@ function plvers
 end
 
 function fish_right_prompt
-    # git
-    __fish_git_prompt
+    # git (the prompt has a hardwired leading space we need to remove)
+    string trim (__fish_git_prompt)
 
     # versions of Python, Ruby and Perl
     set -l vers

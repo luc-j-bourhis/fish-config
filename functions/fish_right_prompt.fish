@@ -11,6 +11,11 @@ function plvers
 end
 
 function fish_right_prompt
+    # conda
+    if set -q CONDA_DEFAULT_ENV
+        echo -n "($CONDA_DEFAULT_ENV)"
+    end
+
     # git (the prompt has a hardwired leading space we need to remove)
     string trim (__fish_git_prompt)
 

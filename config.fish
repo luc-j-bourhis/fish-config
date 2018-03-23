@@ -39,13 +39,11 @@ if test -d ~/miniconda3
     if set -q my_fish_disable_official_conda_completions
         complete -c conda -e
     end
-    # Tweak official conda prompt as it prints an unwanted space
+    # Disable official conda prompt as it has an uwanted space in it
     # The sourcing we have just done has saved fish_right_prompt
     # on entry to __fish_right_prompt_orig
-    function fish_right_prompt
-        string trim $CONDA_PROMPT_MODIFIER
-        __fish_right_prompt_orig
-    end
+    functions -e fish_right_prompt
+    functions -c __fish_right_prompt_orig fish_right_prompt
 end
 
 # git prompt

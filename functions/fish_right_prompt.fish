@@ -16,8 +16,8 @@ function fish_right_prompt
         echo -n "($CONDA_DEFAULT_ENV)"
     end
 
-    # git (the prompt has a hardwired leading space we need to remove)
-    string trim (__fish_git_prompt)
+    # git (the default format has a leading space I don't want)
+    __fish_git_prompt "(%s)"
 
     # versions of Python, Ruby and Perl
     set -l vers

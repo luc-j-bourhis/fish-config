@@ -4,6 +4,9 @@ function fish_prompt --description 'Write out the prompt'
     else
         set_color -o black
     end
+    if test -n "$SSH_CLIENT" -o -n "$SSH_TTY"
+        echo -n (hostname):
+    end
     echo -n (prompt_pwd)
     set_color normal
     echo -n '% '

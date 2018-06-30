@@ -1,3 +1,6 @@
+# Start clean
+set -Ue fish_user_paths
+
 # rbenv
 if test -d ~/.rbenv
     status --is-interactive; and source (rbenv init -|psub)

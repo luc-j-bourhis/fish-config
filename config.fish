@@ -63,3 +63,6 @@ set __fish_git_prompt_char_untrackedfiles '~'
 if type -q opam
     prepend_new_on_PATH_to_fish_user_paths (opam config env)
 end
+
+# Kernel name
+set -q kernel_name; or set -U kernel_name (uname -s)

@@ -1,4 +1,5 @@
-function sman --description 'Display a nicely formatted manpage for the given command'
+function sman --description 'Display a nicely formatted manpage for the given command' \
+              --wraps man
     switch $kernel_name
         case Darwin
 	       open -a Bwana man:$argv[1]

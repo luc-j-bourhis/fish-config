@@ -1,5 +1,6 @@
 # rbenv
 if test -d ~/.rbenv
+    prepend_to_fish_user_paths ~/.rbenv/bin
     status --is-interactive; and source (rbenv init -|psub)
 end
 
@@ -43,7 +44,9 @@ if test -d ~/miniconda3
     # The sourcing we have just done has saved fish_right_prompt
     # on entry to __fish_right_prompt_orig
     functions -e fish_right_prompt
-    functions -c __fish_right_prompt_orig fish_right_prompt
+    functions -q __fish_right_prompt_orig; and begin
+        functions -c __fish_right_prompt_orig fish_right_prompt
+    end
 end
 
 # git prompt

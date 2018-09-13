@@ -21,7 +21,15 @@ function fish_right_prompt
 
     # versions of Python, Ruby and Perl
     set -l vers
-    for lang in py rb pl
+    set -l languages_short py rb pl
+    set -l languages_long python ruby perl
+    set -l languages_colour yellow red blue
+    for i in (seq 3)
+        set -l lang $languages_short[$i]
+        if not set -q my_fish_shows_{$languages_long[$i]}_prompt
+            set vers $vers n/a
+            continue
+        end
         set -l cmd {$lang}env
         if type -q $cmd
             set ver (eval $cmd version-name)
@@ -40,11 +48,11 @@ function fish_right_prompt
         end
     end
 
-    set_color yellow
-    printf "[%s]" $vers[1]
-    set_color red
-    printf "[%s]" $vers[2]
-    set_color blue
-    printf "[%s]" $vers[3]
+    for i in (seq 3)
+        if set -q my_fish_shows_{$languages_long[$i]}_prompt
+            set_color $languages_colour[$i]
+            printf "[%s]" (string replace -r "\.\d+\z" "" $vers[$i])
+        end
+    end
     set_color normal
 end

@@ -1,5 +1,5 @@
 function open_url_with_safari -a loc -d 'Open the given location in Safari browser'
-    if test (uname) != Darwin
+    if test $kernel_name != Darwin
         echo (status function) is only available on MacOS
         return
     end

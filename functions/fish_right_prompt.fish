@@ -20,7 +20,7 @@ end
 function fish_right_prompt
     # conda
     if set -q CONDA_DEFAULT_ENV
-        echo -n "($CONDA_DEFAULT_ENV)"
+        echo -n "{$CONDA_DEFAULT_ENV}"
     end
 
     # git (the default format has a leading space I don't want)

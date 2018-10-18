@@ -3,7 +3,14 @@ function rbvers
 end
 
 function pyvers
-    echo (type python > /dev/null ^&1; and python -c 'import platform; print(platform.python_version())')
+    set -l pycmd 'import platform; print(platform.python_version())'
+    if type -q python3
+        echo (python3 -c $pycmd)
+    else if type -q python
+        echo (python -c $pycmd)
+    else
+        echo none
+    end
 end
 
 function plvers

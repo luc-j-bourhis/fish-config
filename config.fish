@@ -65,7 +65,7 @@ end
 
 # Kernel name
 set -q kernel_name; or set -U kernel_name (uname -s)
-if string match 'CYGWIN*' $kernel_name
+if string match -q 'CYGWIN*' $kernel_name
     set -U kernel_name Cygwin
 end
 

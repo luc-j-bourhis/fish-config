@@ -1,5 +1,5 @@
 function rbvers
-    echo (type ruby > /dev/null ^&1; and ruby -e 'puts RUBY_VERSION'; or echo 'none')
+    echo (type ruby &> /dev/null; and ruby -e 'puts RUBY_VERSION'; or echo 'none')
 end
 
 function pyvers

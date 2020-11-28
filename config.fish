@@ -69,7 +69,11 @@ if string match -q 'CYGWIN*' $kernel_name
     set -U kernel_name Cygwin
 end
 
-switch $kernel_name
-    case 'Cygwin'
-        eval (ssh-pageant -c -r -a $SSH_AUTH_SOCK > /dev/null)
+if not set -q SSH_AGENT_ID
+    switch $kernel_name
+        case 'Cygwin'
+            eval (ssh-pageant -c -r -a $SSH_AUTH_SOCK > /dev/null)
+        case 'Linux'
+            keychain --eval --quiet -Q | source
+    end
 end

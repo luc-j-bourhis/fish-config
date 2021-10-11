@@ -2,29 +2,18 @@
 set -Ue fish_user_paths
 
 # rbenv
-if test -d ~/.rbenv
-    prepend_to_fish_user_paths ~/.rbenv/bin
-    status --is-interactive; and source (rbenv init -|psub)
+if type -q rbenv
+    rbenv init - | source
 end
 
 # plenv
-if test -d ~/.plenv
-    prepend_to_fish_user_paths ~/.plenv/bin
-    plenv init - fish | source
-end
-
-# local::lib
-if test -d ~/.perl5
-    prepend_new_on_PATH_to_fish_user_paths (perl -I$HOME/.perl5/lib/perl5 -Mlocal::lib=$HOME/.perl5)
+if type -q plenv
+    plenv init - | source
 end
 
 # pyenv
-if test -d ~/.pyenv
-    prepend_to_fish_user_paths ~/.pyenv/bin $PATH
+if type -q pyenv
     pyenv init - fish | source
-    # if the virtualenv plugin for pyenv is not installed,
-    # the following will silently fail
-    pyenv virtualenv-init - fish | source
 end
 
 # ~/bin

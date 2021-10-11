@@ -32,7 +32,6 @@ status --is-interactive; and test -f ~/.config-interactive.fish; and source ~/.c
 # Miniconda
 if test -d ~/miniconda3
     source ~/miniconda3/etc/fish/conf.d/conda.fish
-    conda activate base
     # Disable official conda prompt as it has an uwanted space in it
     # The sourcing we have just done has saved fish_right_prompt
     # on entry to __fish_right_prompt_orig

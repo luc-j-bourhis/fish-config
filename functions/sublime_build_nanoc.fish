@@ -2,7 +2,7 @@ function sublime_build_nanoc --a filepath -d 'Sublime Text build scheme for nano
 	bundle exec nanoc
     or exit $status
     if string match -q '*.md' $filepath
-        set -U last_nanoc_url (string replace -r '^.*/content/' 'http://192.168.1.200:4000/' (dirname $filepath))
+        set -U last_nanoc_url (string replace -r '^.*/content/' 'http://192.168.1.21:4000/' (dirname $filepath))
     end
     echo Opening $last_nanoc_url ...
     if test (osascript \

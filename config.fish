@@ -21,6 +21,11 @@ if test -d ~/bin
     append_to_fish_user_paths ~/bin
 end
 
+# git-subrepo
+if test -d ~/Developer/git-subrepo
+    append_to_fish_user_paths ~/Developer/git-subrepo/lib
+end
+
 # Settings for interactive sessions only
 status --is-interactive; and test -f ~/.config-interactive.fish; and source ~/.config-interactive.fish
 

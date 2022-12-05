@@ -1,5 +1,5 @@
 function rbvers
-    echo (type ruby &> /dev/null; and ruby -e 'puts RUBY_VERSION'; or echo 'none')
+    echo (type -q ruby; and ruby -e 'puts RUBY_VERSION'; or echo 'none')
 end
 
 function pyvers
@@ -39,7 +39,7 @@ function fish_right_prompt
         end
         set -l cmd {$lang}env
         if type -q $cmd
-            set ver (eval $cmd version-name)
+            set ver (eval $cmd version-name|string replace system sys)
         else
             set ver (eval {$lang}vers)
         end

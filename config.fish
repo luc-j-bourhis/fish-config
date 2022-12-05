@@ -30,8 +30,8 @@ end
 status --is-interactive; and test -f ~/.config-interactive.fish; and source ~/.config-interactive.fish
 
 # Miniconda
-if test -d ~/miniconda3
-    source ~/miniconda3/etc/fish/conf.d/conda.fish
+if test -d ~/opt/miniconda3
+    eval ~/opt/miniconda3/bin/conda "shell.fish" "hook" $argv | source
     # Disable official conda prompt as it has an uwanted space in it
     # The sourcing we have just done has saved fish_right_prompt
     # on entry to __fish_right_prompt_orig
@@ -70,3 +70,4 @@ if not set -q SSH_AGENT_ID
             keychain --eval --quiet -Q | source
     end
 end
+

@@ -4,3 +4,11 @@ fish_read_history
 fishd.*
 *~
 
+# Bruker specific functions I don't want to commit to a public repo!
+archive-bruker-specific-functions.fish
+bndb.fish
+build_brukersuite.fish
+check-seattle-build.fish
+crap-msncvs.fish
+find-tag-point.fish
+synch-seattle.fish

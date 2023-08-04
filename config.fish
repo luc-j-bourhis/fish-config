@@ -49,6 +49,12 @@ if test -d ~/micromamba; and type -q micromamba
     micromamba shell hook --shell fish --prefix $MAMBA_ROOT_PREFIX | source
 end
 
+# NVIDIA Toolkit 12.1
+if type -q dpkg; and dpkg -l|egrep -q '\scuda-nvcc-12-1\s'
+    prepend_to_fish_user_paths /usr/local/cuda-12.1/bin
+    set -gx LD_LIBRARY_PATH /usr/local/cuda-12.1/lib64
+end
+
 # git prompt
 set __fish_git_prompt_showstashstate     1
 set __fish_git_prompt_showupstream       1

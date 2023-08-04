@@ -41,6 +41,14 @@ if test -d ~/opt/miniconda3
     end
 end
 
+# Micromamba
+# Beware not to have both Miniconda (above) and Micromamba active at the same time!
+# Move one or the other relevant directory out of the way
+if test -d ~/micromamba; and type -q micromamba
+    set -gx MAMBA_ROOT_PREFIX ~/micromamba
+    micromamba shell hook --shell fish --prefix $MAMBA_ROOT_PREFIX | source
+end
+
 # git prompt
 set __fish_git_prompt_showstashstate     1
 set __fish_git_prompt_showupstream       1

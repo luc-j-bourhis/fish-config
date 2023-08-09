@@ -44,9 +44,16 @@ end
 # Micromamba
 # Beware not to have both Miniconda (above) and Micromamba active at the same time!
 # Move one or the other relevant directory out of the way
-if test -d ~/micromamba; and type -q micromamba
-    set -gx MAMBA_ROOT_PREFIX ~/micromamba
-    micromamba shell hook --shell fish --prefix $MAMBA_ROOT_PREFIX | source
+if type -q micromamba
+    set -gx MAMBA_EXE (type -p micromamba)
+    if test -z "$MAMBA_ROOT_PREFIX"
+        if test -d ~/micromamba
+            set -gx MAMBA_ROOT_PREFIX ~/micromamba
+        end
+    end
+    if test -n "$MAMBA_ROOT_PREFIX"
+        micromamba shell hook --shell fish | source
+    end
 end
 
 # NVIDIA Toolkit 12.1

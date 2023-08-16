@@ -29,16 +29,14 @@ end
 # Settings for interactive sessions only
 status --is-interactive; and test -f ~/.config-interactive.fish; and source ~/.config-interactive.fish
 
+# Conda right prompt color
+set MY_CONDA_PROMPT_COLOUR 009193 # Apple Teal
+
 # Miniconda
 if test -d ~/opt/miniconda3
-    eval ~/opt/miniconda3/bin/conda "shell.fish" "hook" $argv | source
-    # Disable official conda prompt as it has an uwanted space in it
-    # The sourcing we have just done has saved fish_right_prompt
-    # on entry to __fish_right_prompt_orig
-    functions -e fish_right_prompt
-    functions -q __fish_right_prompt_orig; and begin
-        functions -c __fish_right_prompt_orig fish_right_prompt
-    end
+    ~/opt/miniconda3/bin/conda "shell.fish" "hook" \
+    | perl -pe "s/set_color -o green/set_color $MY_CONDA_PROMPT_COLOUR/" \
+    | source
 end
 
 # Micromamba
@@ -52,7 +50,9 @@ if type -q micromamba
         end
     end
     if test -n "$MAMBA_ROOT_PREFIX"
-        micromamba shell hook --shell fish | source
+        micromamba shell hook --shell fish \
+        | perl -pe "s/set_color -o green/set_color $MY_CONDA_PROMPT_COLOUR/" \
+        | source
     end
 end
 

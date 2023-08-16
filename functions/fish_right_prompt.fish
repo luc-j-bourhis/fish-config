@@ -18,13 +18,6 @@ function plvers
 end
 
 function fish_right_prompt
-    # conda
-    if set -q CONDA_DEFAULT_ENV
-        set_color 009193 # Teal from Apple Color Picker (Pencils)
-        echo -n "($CONDA_DEFAULT_ENV)"
-        set_color normal
-    end
-
     # git (the default format has a leading space I don't want)
     set_color normal
     __fish_git_prompt "(%s)"

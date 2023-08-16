@@ -17,7 +17,7 @@ function az -d 'Wrapper around azcopy for our Limmat container'
     for i in (seq (count $argv))
         set a $argv[$i]
         if ! string match -qr '^--' -- $a; and test (string sub -l 3 $a) = 'az:'
-            set argv[$i] $HOST(string sub -s 4 $a)$SAS
+            set argv[$i] $AZURE_HOST(string sub -s 4 $a)$AZURE_SAS
         end
     end
     switch $argv[1]

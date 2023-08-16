@@ -49,6 +49,11 @@ function fish_right_prompt
         set vers $vers $ver
     end
 
+    # Do we have conda?
+    if set -q CONDA_DEFAULT_ENV
+        set vers[1] (eval pyvers)
+    end
+
     # Do we have a Python virtual environment?
     if test -n "$PYENV_VIRTUALENV_INIT"
         set py_venv (pyenv virtualenvs | \

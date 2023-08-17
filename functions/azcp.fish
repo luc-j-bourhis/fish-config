@@ -1,4 +1,4 @@
-function azcp -d 'Copy files to and from Azure Storage with cp semantics'
+function azcp -d 'Copy files to and from Azure Storage with scp semantics'
     argparse 'h/help' 'r' -- $argv
     if test -n "$_flag_help"
         show_help
@@ -20,7 +20,20 @@ function azcp -d 'Copy files to and from Azure Storage with cp semantics'
     if test -n "$_flag_r"
         set args --recursive=true
     end
-    azcopy copy $args $argv
+    azcopy copy $args $argv \
+    | stdbuf -o0 tr '\r' '\n' \
+    | while read -l li
+        if test -z "$log"
+            string match -qr '^Log file is located at: (?<log>.*)' "$li"
+        else if string match -qr '^(?<progress>\d+\.\d+)\s+%(?<rest>.*)' "$li"
+           printf "$progress %% $rest\r"
+        end
+    end
+    if test $pipestatus[1] -ne 0
+        echo
+        echo "An error occurred: see log file at $log"
+        return 1
+    end
 end
 
 function show_help

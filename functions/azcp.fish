@@ -1,5 +1,5 @@
 function azcp -d 'Copy files to and from Azure Storage with scp semantics'
-    argparse 'h/help' 'r' -- $argv
+    argparse 'h/help' 'r' 'v' -- $argv
     if test -n "$_flag_help"
         show_help
         return 0
@@ -20,19 +20,44 @@ function azcp -d 'Copy files to and from Azure Storage with scp semantics'
     if test -n "$_flag_r"
         set args --recursive=true
     end
-    azcopy copy $args $argv \
+    set cmd azcopy copy $args $argv 
+    if test -n "$_flag_v"
+        echo "Performing `$cmd`"
+    end
+    $cmd \
     | stdbuf -o0 tr '\r' '\n' \
     | while read -l li
+        if test -n "$_flag_v"
+            echo $li
+        end
         if test -z "$log"
             string match -qr '^Log file is located at: (?<log>.*)' "$li"
-        else if string match -qr '^(?<progress>\d+\.\d+)\s+%(?<rest>.*)' "$li"
-           printf "$progress %% $rest\r"
+        end
+        if string match -qr '^(?<progress>\d+\.\d+)\s+%(?<rest>.*)' "$li"
+            printf "$progress %% $rest\r"
+        else if string match -qr '(F|f)ailed(?!: 0)' "$li"
+            echo "E: $li"
+        end
+        if test -z "$minutes"
+            string match -qr 'Elapsed Time \(Minutes\):\s*(?<minutes>.*)' "$li"
+        end
+        if test -z "$bytes"
+            string match -qr 'TotalBytesTransferred:\s*(?<bytes>.*)' "$li"
         end
     end
     if test $pipestatus[1] -ne 0
-        echo
-        echo "An error occurred: see log file at $log"
+        if test -n "$log"
+            echo
+            echo "An error has occured: see log file at $log for more details."
+        end
         return 1
+    else
+        if test -n "$minutes"; and test -n "$bytes"
+            set size (numfmt --to=si --suffix=B $bytes)
+            set duration (date -u -d@(math "$minutes*60") +%H:%M:%S)
+            echo
+            echo "$size transferred in $duration"
+        end
     end
 end
 

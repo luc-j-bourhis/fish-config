@@ -13,7 +13,7 @@ function azls -d 'List files on an Azure Storage Server in the manner of ls'
     ';\s*'\
     'LastModifiedTime:\s*(?<date>\S+) (?<time>\S+)'\
     '.*?;\s*'\
-    'Content Length: (?<size>[\d.]+) (?<unit>(K|M|G|T)iB)')
+    'Content Length: (?<size>[\d.]+) (?<unit>B|(K|M|G|T)iB)')
   for li in (azcopy list --properties LastModifiedTime (az $path))
     string match -qr "$regex" "$li"
     set len (string length $path)

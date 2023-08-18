@@ -2,7 +2,8 @@ function azls -d 'List files on an Azure Storage Server in the manner of ls'
   argparse 'h/help' 'S' 'l' 't' -- $argv
   if test -n "$_flag_help"
     echo "azls [-l] [-S] [-t] PATH"
-    echo "The PATH is relative to the root of \$AZURE_HOST"
+    echo "The PATH is either relative to the root of \$AZURE_HOST"
+    echo "or / refers to the root of \$AZURE_HOST"
     return 0
   end
   set path $argv[1]

@@ -7,6 +7,7 @@ function az -d 'Add host and SAS for Azure Storage'
         echo 'Please define environment variable AZURE_SAS: its value is the shared access secret chosen in Azure storage manager'
         return 1
     end
-    echo "$AZURE_HOST/$argv[1]$AZURE_SAS"
+    set url (string replace -ar '(?<!http:)(?<!https:)//' '/' "$AZURE_HOST/$argv[1]")
+    echo $url$AZURE_SAS
 end
 

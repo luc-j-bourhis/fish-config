@@ -18,12 +18,12 @@ end
 
 # ~/bin
 if test -d ~/bin
-    append_to_fish_user_paths ~/bin
+    fish_add_path -a ~/bin
 end
 
 # git-subrepo
 if test -d ~/Developer/git-subrepo
-    append_to_fish_user_paths ~/Developer/git-subrepo/lib
+    fish_add_path -a ~/Developer/git-subrepo/lib
 end
 
 # Settings for interactive sessions only
@@ -58,7 +58,7 @@ end
 
 # NVIDIA Toolkit 12.1
 if type -q dpkg; and dpkg -l|egrep -q '\scuda-nvcc-12-1\s'
-    prepend_to_fish_user_paths /usr/local/cuda-12.1/bin
+    fish_add_path -p /usr/local/cuda-12.1/bin
     set -gx LD_LIBRARY_PATH /usr/local/cuda-12.1/lib64
 end
 

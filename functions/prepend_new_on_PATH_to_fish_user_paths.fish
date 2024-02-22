@@ -4,7 +4,7 @@ function prepend_new_on_PATH_to_fish_user_paths \
     eval $argv
     for p in $PATH
         contains $p $OLD_PATH
-        or prepend_to_fish_user_paths $p
+        or fish_add_path -p $p
     end
     set -gx PATH $OLD_PATH
 end

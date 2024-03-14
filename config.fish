@@ -19,6 +19,11 @@ if test -d ~/.pyenv
     pyenv init - fish | source
 end
 
+# Poetry
+if test -f ~/.local/bin/poetry
+    fish_add_path ~/.local/bin
+end
+
 # ~/bin
 if test -d ~/bin
     fish_add_path -a ~/bin

@@ -2,17 +2,20 @@
 set -Ue fish_user_paths
 
 # rbenv
-if type -q rbenv
+if test -d ~/.rbenv
+    fish_add_path ~/.rbenv/bin
     rbenv init - | source
 end
 
 # plenv
-if type -q plenv
+if test -d ~/.plenv
+    fish_add_path ~/.plenv/bin
     plenv init - | source
 end
 
 # pyenv
-if type -q pyenv
+if test -d ~/.pyenv
+    fish_add_path ~/.pyenv/bin
     pyenv init - fish | source
 end
 

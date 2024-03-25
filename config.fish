@@ -1,32 +1,37 @@
 # Start clean
-set -Ue fish_user_paths
+set -ge fish_user_paths
 
 # rbenv
 if test -d ~/.rbenv
-    fish_add_path ~/.rbenv/bin
+    fish_add_path -g ~/.rbenv/bin
     rbenv init - | source
 end
 
 # plenv
 if test -d ~/.plenv
-    fish_add_path ~/.plenv/bin
+    fish_add_path -g ~/.plenv/bin
     plenv init - | source
 end
 
 # pyenv
 if test -d ~/.pyenv
-    fish_add_path ~/.pyenv/bin
+    fish_add_path -g ~/.pyenv/bin
     pyenv init - fish | source
 end
 
 # Poetry
 if test -f ~/.local/bin/poetry
-    fish_add_path ~/.local/bin
+    fish_add_path -g ~/.local/bin
 end
 
 # ~/bin
 if test -d ~/bin
-    fish_add_path -a ~/bin
+    fish_add_path -g -a ~/bin
+end
+
+# ~/.local/bin
+if test -d ~/.local/bin
+    fish_add_path -g -a ~/.local/bin
 end
 
 # Settings for interactive sessions only

@@ -64,12 +64,6 @@ if type -q micromamba
     end
 end
 
-# NVIDIA Toolkit 12.1
-if type -q dpkg; and dpkg -l|egrep -q '\scuda-nvcc-12-1\s'
-    fish_add_path -p /usr/local/cuda-12.1/bin
-    set -gx LD_LIBRARY_PATH /usr/local/cuda-12.1/lib64
-end
-
 # git prompt
 set __fish_git_prompt_showstashstate     1
 set __fish_git_prompt_showupstream       1

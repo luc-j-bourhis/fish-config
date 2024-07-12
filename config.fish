@@ -93,3 +93,6 @@ set -x QUOTING_STYLE literal
 if test -d ~/Developer/git-subrepo
     source ~/Developer/git-subrepo/.fish.rc
 end
+
+# Per machine customisation
+test -f ./this_machine.fish; and source ./this_machine.fish

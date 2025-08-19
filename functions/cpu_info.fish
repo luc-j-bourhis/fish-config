@@ -8,7 +8,7 @@ function cpu_info --no-scope-shadowing \
     or return
     set -l key
     switch (uname)
-    case Linux 'CYGWIN*'
+    case Linux
         if set -q _flag_cores
             set key 'core id'
         else if set -q _flag_threads

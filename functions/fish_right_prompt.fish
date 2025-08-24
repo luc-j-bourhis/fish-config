@@ -1,22 +1,3 @@
-function rbvers
-    echo (type -q ruby; and ruby -e 'puts RUBY_VERSION'; or echo 'none')
-end
-
-function pyvers
-    set -l pycmd 'import platform; print(platform.python_version())'
-    if type -q python3
-        echo (python3 -c $pycmd)
-    else if type -q python
-        echo (python -c $pycmd)
-    else
-        echo none
-    end
-end
-
-function plvers
-    perl -e '$_=$^V; s/^v//; print'
-end
-
 function fish_right_prompt
     # git (the default format has a leading space I don't want)
     set_color normal

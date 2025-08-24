@@ -3,12 +3,14 @@ function fish_right_prompt
     set_color normal
     __fish_git_prompt "(%s)"
 
-    # versions of Python, Ruby and Perl
+    # versions of various interpreters and compilers
     set -l vers
-    set -l languages_short py rb pl
-    set -l languages_long python ruby perl
-    set -l languages_colour yellow red blue
-    for i in (seq 3)
+    set -l languages_short py rb pl ml
+    set -l languages_long python ruby perl ocaml
+    # Colours picked on official web sites
+    set -l languages_colour '#FFDA4C' '#CD342D' '#004E74' '#F18803'
+    set languages_count (count $languages_short)
+    for i in (seq $languages_count)
         set -l lang $languages_short[$i]
         if not set -q my_fish_shows_{$languages_long[$i]}_prompt
             set vers $vers n/a
@@ -34,7 +36,7 @@ function fish_right_prompt
         set vers[1] (eval pyvers)
     end
 
-    for i in (seq 3)
+    for i in (seq $languages_count)
         if set -q my_fish_shows_{$languages_long[$i]}_prompt
             set_color $languages_colour[$i]
             printf "[%s]" (string replace -r "\.\d+\z" "" $vers[$i])
